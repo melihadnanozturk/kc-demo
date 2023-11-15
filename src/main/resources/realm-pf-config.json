@@ -1,0 +1,8 @@
+{
+  "realm": "pf",
+  "auth-server-url": "http://localhost:8180",
+  "resource": "pf-api",
+  "credentials": {
+    "secret": "keGFMwc3IkLcYYaJZS8GSV7zEd3h1xfG"
+  }
+}

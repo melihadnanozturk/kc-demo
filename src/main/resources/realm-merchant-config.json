@@ -1,0 +1,8 @@
+{
+  "realm": "pf",
+  "auth-server-url": "http://localhost:8180",
+  "resource": "merchant-api",
+  "credentials": {
+    "secret": "VxwDXsNbz558yndEnxom5llkhr3IHeul"
+  }
+}
