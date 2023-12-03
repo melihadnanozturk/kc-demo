@@ -15,7 +15,11 @@
  */
 package com.madnan.pfbackenddemo.web.pf;
 
+import com.madnan.pfbackenddemo.model.TaskRepresentation;
+import com.madnan.pfbackenddemo.service.pf.SettlementService;
 import com.madnan.pfbackenddemo.web.BaseResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/settlement")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class SettlementController {
+
+    @Autowired
+    SettlementService settlementService;
 
     @GetMapping()
     public BaseResponse<Object> getSettlement() {
@@ -33,6 +41,16 @@ public class SettlementController {
         return BaseResponse.builder()
                 .success(true)
                 .data(message)
+                .build();
+    }
+
+    @GetMapping("/make")
+    public BaseResponse<Object> makeSettlementOperation() {
+        TaskRepresentation data = settlementService.createSettlementOperation();
+
+        return BaseResponse.builder()
+                .success(true)
+                .data(data)
                 .build();
     }
 }

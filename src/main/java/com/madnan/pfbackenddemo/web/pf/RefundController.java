@@ -15,7 +15,10 @@
  */
 package com.madnan.pfbackenddemo.web.pf;
 
+import com.madnan.pfbackenddemo.model.TaskRepresentation;
+import com.madnan.pfbackenddemo.service.pf.RefundService;
 import com.madnan.pfbackenddemo.web.BaseResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/refund")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class RefundController {
+
+    private final RefundService refundService;
 
     @GetMapping()
     public BaseResponse<Object> getRefund() {
@@ -37,10 +43,13 @@ public class RefundController {
     }
 
     @GetMapping("/make")
-    public BaseResponse<Object> makeRefund() {
-        String message = "Refunded : Refund was successful";
+    public BaseResponse<Object> makeRefundOperation() {
+        TaskRepresentation data = refundService.createRefundOperation();
 
-        return BaseResponse.builder().success(true).data(message).build();
+        return BaseResponse.builder()
+                .success(true)
+                .data(data)
+                .build();
     }
 
     @GetMapping("/remove")

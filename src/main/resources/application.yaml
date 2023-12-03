@@ -4,9 +4,18 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8180/realms/pf/protocol/openid-connect/certs
-
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
   cors:
     allowed-origins: "*"
     allowed-methods: "*"
     allowed-headers: "*"
+
 

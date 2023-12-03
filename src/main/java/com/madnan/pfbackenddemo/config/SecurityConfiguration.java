@@ -43,10 +43,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class)
-                .cors();
+        http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt).addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class).cors();
         return http.build();
     }
 
@@ -57,7 +54,7 @@ public class SecurityConfiguration {
             @Override
             public PolicyEnforcerConfig resolve(HttpRequest request) {
                 try {
-                    return JsonSerialization.readValue(getClass().getResourceAsStream("/realm-merchant-config.json"), PolicyEnforcerConfig.class);
+                    return JsonSerialization.readValue(getClass().getResourceAsStream("/realm-pf-config.json"), PolicyEnforcerConfig.class);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

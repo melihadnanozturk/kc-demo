@@ -15,7 +15,10 @@
  */
 package com.madnan.pfbackenddemo.web.pf;
 
+import com.madnan.pfbackenddemo.model.TaskRepresentation;
+import com.madnan.pfbackenddemo.service.pf.PaymentService;
 import com.madnan.pfbackenddemo.web.BaseResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/payment")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class PaymentController {
+
+    private final PaymentService paymentService;
 
     @GetMapping()
     public BaseResponse<Object> getPayment() {
@@ -34,10 +40,13 @@ public class PaymentController {
     }
 
     @GetMapping("/make")
-    public BaseResponse<Object> makePayment() {
-        String message = "Paid : Payment was successful";
+    public BaseResponse<Object> makePaymentOperation() {
+        TaskRepresentation data = paymentService.createPaymentOperation();
 
-        return BaseResponse.builder().success(true).data(message).build();
+        return BaseResponse.builder()
+                .success(true)
+                .data(data)
+                .build();
     }
 
     @GetMapping("/remove")

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:design="http://flowable.org/design" typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://flowable.org/test"
+             design:palette="flowable-work-process-palette">
+    <process id="makerChecker" name="serviceTestTrying" isExecutable="true"
+             flowable:candidateStarterGroups="flowableUser">
+        <extensionElements>
+            <design:stencilid><![CDATA[BPMNDiagram]]></design:stencilid>
+            <design:creationdate><![CDATA[2023-12-01T18:16:23.715Z]]></design:creationdate>
+            <design:modificationdate><![CDATA[2023-12-02T00:05:05.355Z]]></design:modificationdate>
+        </extensionElements>
+        <userTask id="CK_1" name="checkerTask" flowable:dueDate="P1M" flowable:formFieldValidation="false">
+            <extensionElements>
+                <flowable:task-candidates-type><![CDATA[all]]></flowable:task-candidates-type>
+                <design:stencilid><![CDATA[FormTask]]></design:stencilid>
+                <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+            </extensionElements>
+        </userTask>
+        <serviceTask id="ST_1" name="ApprovedServiceTask" flowable:delegateExpression="${DELEGATE_EXPRESSION}">
+            <extensionElements>
+                <design:stencilid><![CDATA[ServiceTask]]></design:stencilid>
+                <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+            </extensionElements>
+        </serviceTask>
+        <serviceTask id="ST_3" name="DeniedServiceTask" flowable:delegateExpression="${DELEGATE_EXPRESSION}">
+            <extensionElements>
+                <design:stencilid><![CDATA[ServiceTask]]></design:stencilid>
+                <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+            </extensionElements>
+        </serviceTask>
+        <exclusiveGateway id="Gateway_1" name="Operation Control">
+            <extensionElements>
+                <design:stencilid><![CDATA[Exclusive_Databased_Gateway]]></design:stencilid>
+                <design:display_ref_in_diagram><![CDATA[true]]></design:display_ref_in_diagram>
+            </extensionElements>
+        </exclusiveGateway>
+        <startEvent id="startnoneevent1" flowable:formFieldValidation="false">
+            <extensionElements>
+                <flowable:work-form-field-validation><![CDATA[false]]></flowable:work-form-field-validation>
+                <design:stencilid><![CDATA[StartNoneEvent]]></design:stencilid>
+            </extensionElements>
+        </startEvent>
+        <endEvent id="bpmnEndEvent_15">
+            <extensionElements>
+                <design:stencilid><![CDATA[EndNoneEvent]]></design:stencilid>
+            </extensionElements>
+        </endEvent>
+        <endEvent id="bpmnEndEvent_19">
+            <extensionElements>
+                <design:stencilid><![CDATA[EndNoneEvent]]></design:stencilid>
+            </extensionElements>
+        </endEvent>
+        <sequenceFlow id="Flow_2" name="Checker To Gateway" sourceRef="CK_1" targetRef="Gateway_1">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+                <design:labelrotation><![CDATA[0]]></design:labelrotation>
+                <design:display_ref_in_diagram><![CDATA[true]]></design:display_ref_in_diagram>
+            </extensionElements>
+        </sequenceFlow>
+        <sequenceFlow id="bpmnSequenceFlow_16" sourceRef="ST_1" targetRef="bpmnEndEvent_15">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+            </extensionElements>
+        </sequenceFlow>
+        <sequenceFlow id="bpmnSequenceFlow_20" sourceRef="ST_3" targetRef="bpmnEndEvent_19">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+            </extensionElements>
+        </sequenceFlow>
+        <sequenceFlow id="Flow_3" name="Gateway To ApprovedService" sourceRef="Gateway_1" targetRef="ST_1">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+                <design:labelrotation><![CDATA[0]]></design:labelrotation>
+                <design:display_ref_in_diagram><![CDATA[true]]></design:display_ref_in_diagram>
+            </extensionElements>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${STATUS == 'APPROVED'}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="Flow_4" name="Gateway To DeniedService" sourceRef="Gateway_1" targetRef="ST_3">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+                <design:labelrotation><![CDATA[0]]></design:labelrotation>
+                <design:display_ref_in_diagram><![CDATA[true]]></design:display_ref_in_diagram>
+            </extensionElements>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${STATUS == 'DENIED'}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="Flow_1" name="StartEvent To Checker" sourceRef="startnoneevent1" targetRef="CK_1">
+            <extensionElements>
+                <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+                <design:labelrotation><![CDATA[0]]></design:labelrotation>
+                <design:display_ref_in_diagram><![CDATA[true]]></design:display_ref_in_diagram>
+            </extensionElements>
+        </sequenceFlow>
+    </process>
+</definitions>
