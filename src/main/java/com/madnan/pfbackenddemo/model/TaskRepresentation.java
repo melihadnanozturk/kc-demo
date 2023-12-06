@@ -16,7 +16,7 @@ public class TaskRepresentation {
     private String operationId;
     private String operationName;
     private String operationStatus;
+    private String createdBy;
     private Date createdDate;
-    private Date endDate;
 
 }

@@ -1,5 +1,6 @@
 package com.madnan.pfbackenddemo.web.flow;
 
+import com.madnan.pfbackenddemo.model.TaskDetailRepresentation;
 import com.madnan.pfbackenddemo.model.TaskRepresentation;
 import com.madnan.pfbackenddemo.service.ProcessService;
 import com.madnan.pfbackenddemo.web.request.AnswerRequest;
@@ -19,6 +20,12 @@ public class FlowController {
     @GetMapping("/list")
     public List<TaskRepresentation> getAllTasks(@RequestBody OperationRequest operationRequest) {
         return processService.getAllTasks(operationRequest);
+
+    }
+
+    @GetMapping("/list/{taskId}")
+    public TaskDetailRepresentation getTaskDetail(@PathVariable String taskId) {
+        return processService.getTaskDetail(taskId);
 
     }
 

@@ -5,12 +5,14 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:8180/realms/pf/protocol/openid-connect/certs
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/pf-test
+    username: root
+    password: root123
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
   h2:
     console.enabled: true
   cors:

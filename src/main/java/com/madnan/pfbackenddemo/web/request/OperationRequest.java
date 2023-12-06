@@ -14,6 +14,7 @@ import java.util.Date;
 public class OperationRequest {
 
     int pageNumber;
+    int pageSize;
     private Date afterCreatedTime;
     private String operationName;
     private String sortedBy;
