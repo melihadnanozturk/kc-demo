@@ -25,7 +25,7 @@ public class PaymentServiceImpl implements PaymentService {
         variables.put("TV1", "PaymentDetay1");
         variables.put("TV2", "PaymentDetay2");
 
-        return processService.startProcess(variables, "paymentFlow");
+        return processService.startProcess(variables, "PaymentFlow_V2");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.madnan.pfbackenddemo.web.request;
 
+import com.madnan.pfbackenddemo.model.OperationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,13 @@ public class OperationRequest {
 
     int pageNumber;
     int pageSize;
+    private String sortedBy;
+
+    //todo: ayrı bir class'a taşınabilir
     private Date afterCreatedTime;
     private String operationName;
-    private String sortedBy;
+    private String operationId;
+    private String refId;
+    private OperationStatus operationStatus;
+
 }

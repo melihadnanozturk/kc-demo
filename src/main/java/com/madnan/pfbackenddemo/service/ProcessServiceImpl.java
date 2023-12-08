@@ -15,9 +15,10 @@ import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.flowable.task.api.history.HistoricTaskInstance;
-import org.flowable.variable.api.history.HistoricVariableInstance;
+import org.flowable.task.api.history.HistoricTaskInstanceQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,9 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Transactional
     public TaskRepresentation startProcess(Map<String, Object> variables, String flowName) {
-
         ProcessInstance processInstance = runtimeService
-                .startProcessInstanceByKey(flowName, VERSION_CONTROL_KEY, variables);
+                .startProcessInstanceByKey(flowName, variables);
+        processEngine = ProcessEngines.getDefaultProcessEngine();
 
         //todo: burada birden fazla istek atılırsa hata fırlatma mekanizması eklenebilir
 
@@ -59,20 +60,12 @@ public class ProcessServiceImpl implements ProcessService {
                 task.getCreateTime());
     }
 
-
     @Override
     @SneakyThrows
     public List<TaskRepresentation> getAllTasks(OperationRequest request) {
-        //todo: STATUS degeri variables icerisinde oldugu icin variablesı forEach ile almak zorunda kaldik
-        List<TaskRepresentation> representations = new ArrayList<>();
         processEngine = ProcessEngines.getDefaultProcessEngine();
-
-        List<HistoricTaskInstance> tasks = processEngine
-                .getHistoryService()
-                .createHistoricTaskInstanceQuery()
-                .orderByTaskCreateTime()
-                .processInstanceBusinessKey(VERSION_CONTROL_KEY)
-                .desc()
+        List<TaskRepresentation> representations = new ArrayList<>();
+        List<HistoricTaskInstance> tasks = filterTask(request)
                 .listPage((request.getPageNumber() - 1) * 10, request.getPageSize());
 
         if (tasks == null) {
@@ -80,60 +73,33 @@ public class ProcessServiceImpl implements ProcessService {
         }
 
         tasks.forEach(task -> {
-            TaskRepresentation representation = new TaskRepresentation();
-            HistoricVariableInstance map = processEngine.getHistoryService()
-                    .createHistoricVariableInstanceQuery()
-                    .taskId(task.getId())
-                    .variableName(OperationVariables.LOCAL_STATUS.name())
-                    .singleResult();
-
-            representation.setOperationId(task.getId());
-            representation.setOperationName(task.getName());
-            representation.setOperationStatus((String) map.getValue());
-            representation.setCreatedDate(task.getCreateTime());
-            representation.setCreatedBy("TESTING / UserName will add");
-
-            representations.add(representation);
+            TaskRepresentation taskRepresentation = setVariables(task);
+            representations.add(taskRepresentation);
         });
 
         return representations;
     }
 
-
     //todo: approved veya denied olmus bir taskın detayı getirilecek mi ?
     @Override
     @SneakyThrows
     public TaskDetailRepresentation getTaskDetail(String taskId) {
-
         processEngine = ProcessEngines.getDefaultProcessEngine();
-        HistoricTaskInstance task = processEngine.getHistoryService()
-                .createHistoricTaskInstanceQuery()
-                .taskId(taskId)
-                .processInstanceBusinessKey(VERSION_CONTROL_KEY)
-                .singleResult();
+
+        HistoricTaskInstance task = getHistoricalQuery().taskId(taskId).singleResult();
 
         if (task == null) {
             throw new Exception("Girdiginiz taskId degerinde Operation bulunamamistir");
         }
 
-        List<HistoricVariableInstance> variable = processEngine.getHistoryService()
-                .createHistoricVariableInstanceQuery()
-                .taskId(taskId)
-                .list();
-
-        TaskDetailRepresentation representation = new TaskDetailRepresentation();
-        variable.forEach(value ->
-                setVariableDetail(value, representation));
-        setTaskDetail(task, representation);
-
-        return representation;
+        return setTaskDetail(task);
     }
 
     @Override
     @SneakyThrows
     public TaskRepresentation answerOperation(AnswerRequest answerRequest) {
         Task task = taskService.createTaskQuery()
-                .processInstanceBusinessKey(VERSION_CONTROL_KEY)
+                //.processInstanceBusinessKey(VERSION_CONTROL_KEY)
                 .taskId(answerRequest.getTaskId())
                 .singleResult();
 
@@ -152,26 +118,69 @@ public class ProcessServiceImpl implements ProcessService {
                 , task.getCreateTime());
     }
 
-    private void setTaskDetail(HistoricTaskInstance task, TaskDetailRepresentation taskDetailRepresentation) {
-        taskDetailRepresentation.setOperationId(task.getId());
-        taskDetailRepresentation.setOperationName(task.getName());
-        taskDetailRepresentation.setCreatedDate(task.getCreateTime());
-        taskDetailRepresentation.setOperationId(task.getId());
-    }
-
-    private void setVariableDetail(HistoricVariableInstance detail, TaskDetailRepresentation representation) {
-        switch (detail.getVariableName()) {
-            case "LOCAL_STATUS" -> representation.setOperationStatus((String) detail.getValue());
-            case "USER_NAME" -> representation.setOperationName((String) detail.getValue());
-            case "TV1" -> representation.setValue1((String) detail.getValue());
-            case "TV2" -> representation.setValue2((String) detail.getValue());
-        }
-    }
-
     private void changeStatusKeyValueForLocal(Map<String, Object> map) {
         Object delegate = map.get(OperationVariables.DELEGATE_EXPRESSION.name());
 
         map.put(OperationVariables.LOCAL_STATUS.name(), OperationStatus.PENDING.name());
         map.put(OperationVariables.LOCAL_DELEGATE_EXPRESSION.name(), delegate);
+    }
+
+
+    private HistoricTaskInstanceQuery getHistoricalQuery() {
+        processEngine = ProcessEngines.getDefaultProcessEngine();
+
+        return processEngine
+                .getHistoryService()
+                .createHistoricTaskInstanceQuery()
+                //.processInstanceBusinessKey(VERSION_CONTROL_KEY)
+                .includeTaskLocalVariables();
+    }
+
+
+    private HistoricTaskInstanceQuery filterTask(OperationRequest request) {
+        var query = getHistoricalQuery().orderByTaskCreateTime().desc();
+
+        if (StringUtils.hasText(request.getOperationName())) {
+            query.taskName(request.getOperationName());
+        }
+        if (StringUtils.hasText(request.getOperationId())) {
+            query.taskId(request.getOperationId());
+        }
+        if (StringUtils.hasText(request.getRefId())) {
+            //query.taskVariableValueEquals(OperationVariables.REF_ID.name(),request.getRefId());
+        }
+        if (request.getOperationStatus() != null) {
+            query.taskVariableValueEquals(OperationVariables.LOCAL_STATUS.name(), request.getOperationStatus().name());
+        }
+
+        //return query.processInstanceBusinessKey(VERSION_CONTROL_KEY);
+        return query;
+    }
+
+    //todo: refactor
+    private TaskRepresentation setVariables(HistoricTaskInstance task) {
+        return TaskRepresentation.builder()
+                .operationId(task.getId())
+                .operationName(task.getName())
+                .operationStatus((String) task.getTaskLocalVariables().get(OperationVariables.LOCAL_STATUS.name()))
+                .createdDate(task.getCreateTime())
+                .createdBy("TESTING / UserName will add")
+                .build();
+    }
+
+    //todo: refactor
+    private TaskDetailRepresentation setTaskDetail(HistoricTaskInstance task) {
+        Map<String, Object> variables = task.getTaskLocalVariables();
+
+        TaskDetailRepresentation taskRepresentation = new TaskDetailRepresentation();
+        taskRepresentation.setOperationStatus((String) variables.get(OperationVariables.STATUS.name()));
+        taskRepresentation.setOperationId(task.getId());
+        taskRepresentation.setOperationName(task.getName());
+        taskRepresentation.setCreatedDate(task.getCreateTime());
+        taskRepresentation.setCreatedBy("Will be added");
+        taskRepresentation.setValue1((String) variables.get("TV1"));
+        taskRepresentation.setValue2((String) variables.get("TV1"));
+
+        return taskRepresentation;
     }
 }

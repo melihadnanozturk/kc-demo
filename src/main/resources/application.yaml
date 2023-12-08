@@ -20,4 +20,8 @@ spring:
     allowed-methods: "*"
     allowed-headers: "*"
 
+flowable:
+  process-definition-location-suffixes: '*.none'
+
+
 
