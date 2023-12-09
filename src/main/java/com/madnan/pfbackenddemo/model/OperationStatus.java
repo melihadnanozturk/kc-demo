@@ -4,8 +4,8 @@ public enum OperationStatus {
 
     APPROVED("Approved"),
     DENIED("Denied"),
-    //REVIEW("Review"),
-    PENDING("Pending");
+    PENDING("Pending"),
+    CANCEL("Cancel");
 
     private final String state;
 

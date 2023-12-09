@@ -1,18 +1,17 @@
 package com.madnan.pfbackenddemo.model;
 
 public enum OperationVariables {
-    STATUS("status"),
-    LOCAL_STATUS("status"),
-    OPERATION("operation"),
-    TASK_NAME("taskName"),
-    DELEGATE_EXPRESSION("delegateExpression"),
-    LOCAL_DELEGATE_EXPRESSION("delegateExpression"),
-    USER_NAME("userName");
+    STATUS,
+    LOCAL_STATUS,
+    REF_ID,
+    APPROVED_EXPRESSION,
+    DENIED_EXPRESSION,
+    LOCAL_APPROVED_EXPRESSION,
+    LOCAL_DENIED_EXPRESSION,
+    USER_NAME,
+    PROCESSS_KEY;
 
-    private final String name;
-
-    OperationVariables(String name) {
-        this.name = name;
+    OperationVariables() {
     }
 
 }

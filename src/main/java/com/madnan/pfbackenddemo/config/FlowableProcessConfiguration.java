@@ -21,7 +21,7 @@ public class FlowableProcessConfiguration {
 
     private final RepositoryService repositoryService;
 
-    @Value("classpath:processes/*")
+    @Value("classpath:flowable/processes/*")
     private Resource[] resources;
 
     @PostConstruct
@@ -63,10 +63,11 @@ public class FlowableProcessConfiguration {
     private void deployProcessIfChanged(String key) throws IOException {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         RepositoryService service = processEngine.getRepositoryService();
-        boolean isExist = service.createProcessDefinitionQuery().processDefinitionKey(key).count() > 0;
+
+        boolean isExist = service.createProcessDefinitionQuery().processDefinitionName(key).count() > 0;
         if (!isExist) {
             repositoryService.createDeployment()
-                    .addClasspathResource("processes/" + key + ".bpmn20.xml")
+                    .addClasspathResource("flowable/processes/" + key + ".bpmn20.xml")
                     .deploy();
         }
     }

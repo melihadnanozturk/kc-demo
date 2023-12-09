@@ -6,13 +6,13 @@ import org.flowable.engine.impl.delegate.ActivityBehavior;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SettlementDelegateService implements ActivityBehavior {
+public class SettlementDeniedDelegateService implements ActivityBehavior {
 
 
     @Override
     public void execute(DelegateExecution execution) {
         SettlementServiceImpl settlementService = new SettlementServiceImpl();
         //todo: burada gerekli operetion bilgisi verilir.
-        settlementService.makeSettlement();
+        settlementService.deniedSettlement();
     }
 }

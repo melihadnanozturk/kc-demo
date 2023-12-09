@@ -11,9 +11,10 @@ import java.util.Date;
 @Builder
 public class TaskRepresentation {
 
-    private String operationId;
+    private String refId;
     private String operationName;
     private String operationStatus;
+    private String operationId;
     private String createdBy;
     private Date createdDate;
 

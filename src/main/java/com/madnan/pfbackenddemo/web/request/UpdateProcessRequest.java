@@ -1,4 +1,4 @@
-package com.madnan.pfbackenddemo.model;
+package com.madnan.pfbackenddemo.web.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskDetailRepresentation extends TaskRepresentation {
-    private String processKey;
-    private String refId;
+public class UpdateProcessRequest {
+    private String olderProcessKey;
+    private String processName;
 }

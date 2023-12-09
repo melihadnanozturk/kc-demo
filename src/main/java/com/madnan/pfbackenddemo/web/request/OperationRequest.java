@@ -17,8 +17,6 @@ public class OperationRequest {
     int pageNumber;
     int pageSize;
     private String sortedBy;
-
-    //todo: ayrı bir class'a taşınabilir
     private Date afterCreatedTime;
     private String operationName;
     private String operationId;

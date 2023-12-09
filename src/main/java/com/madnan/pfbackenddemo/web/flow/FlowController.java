@@ -5,6 +5,7 @@ import com.madnan.pfbackenddemo.model.TaskRepresentation;
 import com.madnan.pfbackenddemo.service.ProcessService;
 import com.madnan.pfbackenddemo.web.request.AnswerRequest;
 import com.madnan.pfbackenddemo.web.request.OperationRequest;
+import com.madnan.pfbackenddemo.web.request.UpdateProcessRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,10 @@ public class FlowController {
     @PostMapping("/answer")
     public TaskRepresentation answerOperation(@RequestBody AnswerRequest answerRequest) {
         return processService.answerOperation(answerRequest);
+    }
+
+    @PostMapping("/update")
+    public String updateProcessVersion(@RequestBody UpdateProcessRequest request) {
+        return processService.updateProcessVersion(request);
     }
 }

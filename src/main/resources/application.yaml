@@ -23,5 +23,12 @@ spring:
 flowable:
   process-definition-location-suffixes: '*.none'
 
+pf:
+  flowable:
+    process-key:
+      Payment: "PaymentFlow_V2--V2"
+      Settlement: "SettlementFlow_V1--V1"
+      Refund: "RefundFlow_V1--V1"
+
 
 

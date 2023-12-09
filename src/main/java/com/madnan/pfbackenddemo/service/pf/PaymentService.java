@@ -6,5 +6,7 @@ public interface PaymentService {
 
     TaskRepresentation createPaymentOperation();
 
-    TaskRepresentation makePayment();
+    void makePayment();
+
+    void deniedPayment();
 }

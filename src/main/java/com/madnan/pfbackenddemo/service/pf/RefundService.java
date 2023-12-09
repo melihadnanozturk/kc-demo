@@ -6,5 +6,7 @@ public interface RefundService {
 
     TaskRepresentation createRefundOperation();
 
-    TaskRepresentation makeRefund();
+    void makeRefund();
+
+    void deniedRefund();
 }

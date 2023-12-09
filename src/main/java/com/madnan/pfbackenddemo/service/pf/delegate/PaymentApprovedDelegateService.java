@@ -1,18 +1,18 @@
 package com.madnan.pfbackenddemo.service.pf.delegate;
 
-import com.madnan.pfbackenddemo.service.pf.RefundServiceImpl;
+import com.madnan.pfbackenddemo.service.pf.PaymentServiceImpl;
 import org.flowable.engine.delegate.DelegateExecution;
 import org.flowable.engine.impl.delegate.ActivityBehavior;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RefundDelegateService implements ActivityBehavior {
+public class PaymentApprovedDelegateService implements ActivityBehavior {
 
 
     @Override
     public void execute(DelegateExecution execution) {
-        RefundServiceImpl refundService = new RefundServiceImpl();
+        PaymentServiceImpl paymentService = new PaymentServiceImpl();
         //todo: burada gerekli operetion bilgisi verilir.
-        refundService.makeRefund();
+        paymentService.makePayment();
     }
 }

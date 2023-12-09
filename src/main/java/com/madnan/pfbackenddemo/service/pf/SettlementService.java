@@ -6,5 +6,7 @@ public interface SettlementService {
 
     TaskRepresentation createSettlementOperation();
 
-    TaskRepresentation makeSettlement();
+    void makeSettlement();
+
+    void deniedSettlement();
 }
