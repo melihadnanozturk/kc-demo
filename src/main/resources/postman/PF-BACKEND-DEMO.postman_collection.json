@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "200c600c-8f2d-4d74-a04c-efe676450bd1",
+		"name": "PF-BACKEND-DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31001979"
+	},
+	"item": [
+		{
+			"name": "Merchant",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Get Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Merchant User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/user/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Merchant User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/user/remove",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"user",
+										"remove"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Summary",
+					"item": [
+						{
+							"name": "Get Summary",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/summary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"summary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Summary",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/summary/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"summary",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Summary",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/merchant/summary/edit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"merchant",
+										"summary",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Backoffice",
+			"item": [
+				{
+					"name": "Payment",
+					"item": [
+						{
+							"name": "Make Payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/payment/make",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"payment",
+										"make"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/payment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/payment/remove",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"payment",
+										"remove"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Refund",
+					"item": [
+						{
+							"name": "Get Refund",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/refund",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"refund"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Make Refund",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/refund/make",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"refund",
+										"make"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Refund",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/refund/remove",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"refund",
+										"remove"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Settlement",
+					"item": [
+						{
+							"name": "Make Settlement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/settlement/make",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"settlement",
+										"make"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Flowable",
+					"item": [
+						{
+							"name": "Get All List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pageNumber\":1,\r\n    \"pageSize\":20,\r\n    \"sortedBy\":\"ASC\",\r\n    \"afterCreatedTime\":\"2022-12-03T23:27:00.155+00:00\",\r\n    \"operationName\":null,\r\n    \"operationId\":null,\r\n    \"refId\":null,\r\n    \"operationStatus\":null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/flow/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flow",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Task Detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/flow/list/e73495cf-967f-11ee-9c5a-d83bbfc0a28d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flow",
+										"list",
+										"e73495cf-967f-11ee-9c5a-d83bbfc0a28d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Version",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"olderProcessKey\":\"RefundFlow_V1--V1\",\r\n    \"processName\":\"deneme\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/flow/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flow",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "asnwer operation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"taskId\":\"e73495cf-967f-11ee-9c5a-d83bbfc0a28d\",\r\n    \"operationStatus\" : \"CANCEL\",\r\n    \"processKey\":\"RefundFlow_V1--V1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/flow/answer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"flow",
+										"answer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YXV0aHotc2VydmxldDpzZWNyZXQ=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "pf-api",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "keGFMwc3IkLcYYaJZS8GSV7zEd3h1xfG",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8180/realms/pf/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8180",
+							"path": [
+								"realms",
+								"pf",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NmRSVFNlM3RlcW9tQjEzWTFwUktoVm9Cd3l1WjlWWEJwZkYySXNnYzhnIn0.eyJleHAiOjE3MDIxMTg4NjAsImlhdCI6MTcwMjExODU2MCwianRpIjoiMmQwYWQ3Y2QtZTlmYS00OGEyLTljMTctZjBlODM1OTNlZDhkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgwL3JlYWxtcy9wZiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJhNjllMmU3ZC1hNGVhLTQ0NTAtODM1MC02NWU0MTJmMWJhNzAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJwZi1hcGkiLCJzZXNzaW9uX3N0YXRlIjoiMGI3MDMxZTYtNGRkYi00M2RjLTk1ZTItMjZkMzRiZTRhMGFlIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtcGYiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwicmVhbG0tYWRtaW4tcm9sZSJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InBmLWFwaSI6eyJyb2xlcyI6WyJyZW1vdmUgcGF5bWVudCIsInVtYV9wcm90ZWN0aW9uIiwibWFrZSBwYXltZW50IiwiYWRtaW4gcm9sZSIsInJlbW92ZSByZWZ1bmQiLCJtYWtlIHJlZnVuZCJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiMGI3MDMxZTYtNGRkYi00M2RjLTk1ZTItMjZkMzRiZTRhMGFlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.XyOjZ9lAc_BlG6_AeY7qLgTgnybJMLXpqGVWBIuEyc9BpGlzJWbLi0qNCsg57XxEzVBkZtBGprnJn4xO2JNH2mTSHszgJWfKR6Hc0GsLvuBXVUDnB2jkvFj8rfjmvs4-5P5_BdZq9WGC0eKPWqb6yje_PXPwxX4uydabd6rFH1fDWWg-zAsbFtTeVmq_5YSOHIoZ6fJLV1jkmAcHvZsTHukRhr4DCpVmZkiaecrZSSgOjCHAoYrJ1DfGPyyAxU_lelC0YEXUhQQB710bDlhlSvW8LNMW8vj5YReaU3B1CBRKs8GrjmqUT8wigiBayxQ99DFFqewewO9BDm0KPS3UfQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
